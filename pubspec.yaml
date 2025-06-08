@@ -44,8 +44,15 @@ flutter:
     - assets/data/apple_trees.json
     - assets/icons/
     - assets/images/daddy_apple.png
+    - assets/images/treeUp.png
+    - assets/images/bof.png
+    - assets/images/wtf.png
+    - assets/images/tree.png
 
   fonts:
     - family: BubblegumSans
       fonts:
         - asset: assets/fonts/BubblegumSans-Regular.ttf
+    - family: EuphoriaScript
+      fonts:
+        - asset: assets/fonts/EuphoriaScript-Regular.ttf
