@@ -43,3 +43,30 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# iOS build artifacts and sensitive files
+ios/build/
+ios/.symlinks/
+ios/Podfile.lock
+ios/Runner.xcworkspace/xcuserdata/
+
+# macOS build artifacts  
+macos/build/
+macos/.symlinks/
+macos/Podfile.lock
+macos/Runner.xcworkspace/xcuserdata/
+
+# Web build artifacts
+web/packages/
+
+# Environment files and API keys
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# Temporary files
+*.tmp
+*.temp
+package-lock.json

@@ -11,7 +11,7 @@ import GoogleMaps
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
 
-    // Add this line, BEFORE GeneratedPluginRegistrant
+    // Google Maps API key for AppleMatch hackathon project
     GMSServices.provideAPIKey("AIzaSyA-YN2OdH-a7w0ta12NcVIrAtxPPsGCIPs") 
 
     GeneratedPluginRegistrant.register(with: self)
