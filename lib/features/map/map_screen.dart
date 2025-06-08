@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../data/tree_repository.dart';
 import '../../models/tree_model.dart';
 import '../../widgets/tree_profile_card.dart';
+import '../../widgets/tree_filter_widget.dart';
 import 'map_controller.dart';
 import '../maturity/upcoming_maturity_page.dart';
 
@@ -22,6 +23,17 @@ class _MapScreenState extends State<MapScreen> {
   final Set<Marker> _markers = {};
   final Set<String> _favoriteIds = {};
   final List<Tree> _favoriteTrees = [];
+  List<Tree> _allTrees = [];
+  List<Tree> _filteredTrees = [];
+
+  // Filter criteria
+  int _minHeight = 1;
+  int _maxHeight = 50;
+  int _minGirth = 1;
+  int _maxGirth = 200;
+  int _minAge = 1;
+  int _maxAge = 1500;
+  bool _filtersActive = false;
 
   static const CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(47.614800206326926, -122.35563209083134),
@@ -86,7 +98,15 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> _loadTreeMarkers() async {
     final trees = await _treeRepository.getTrees();
-    final newMarkers = trees.map((tree) {
+    _allTrees = trees;
+    _filteredTrees = trees; // Initially show all trees
+    _updateMarkers();
+  }
+
+  void _updateMarkers() {
+    final treesToShow = _filtersActive ? _filteredTrees : _allTrees;
+    
+    final newMarkers = treesToShow.map((tree) {
       final isFav = _favoriteIds.contains(tree.id);
       
       // Calculate compatibility for marker color
@@ -116,7 +136,7 @@ class _MapScreenState extends State<MapScreen> {
         icon: BitmapDescriptor.defaultMarkerWithHue(hue),
         infoWindow: InfoWindow(
           title: '${tree.name} - $compatibility% Match',
-          snippet: 'Tap for full profile • ${tree.isMature ? "Mature 🍎" : "Growing 🌱"}',
+          snippet: 'Tap for full profile • ${tree.isMature ? "Mature 🍎" : "Growing 🌱"} • ${tree.rings} rings',
           onTap: () => _showTreeOptions(tree),
         ),
       );
@@ -129,6 +149,48 @@ class _MapScreenState extends State<MapScreen> {
           ..addAll(newMarkers);
       });
     }
+  }
+
+  void _applyFilters(int minHeight, int maxHeight, int minGirth, int maxGirth, int minAge, int maxAge) {
+    setState(() {
+      _minHeight = minHeight;
+      _maxHeight = maxHeight;
+      _minGirth = minGirth;
+      _maxGirth = maxGirth;
+      _minAge = minAge;
+      _maxAge = maxAge;
+      _filtersActive = true;
+      
+      _filteredTrees = _allTrees.where((tree) {
+        return tree.length >= minHeight &&
+               tree.length <= maxHeight &&
+               tree.girth >= minGirth &&
+               tree.girth <= maxGirth &&
+               tree.age >= minAge &&
+               tree.age <= maxAge;
+      }).toList();
+    });
+    _updateMarkers();
+  }
+
+  void _clearFilters() {
+    setState(() {
+      _filtersActive = false;
+      _filteredTrees = _allTrees;
+    });
+    _updateMarkers();
+  }
+
+  void _showFilterModal() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => TreeFilterWidget(
+        onFiltersChanged: _applyFilters,
+        onClearFilters: _clearFilters,
+      ),
+    );
   }
 
   void _toggleFavorite(Tree tree) {
@@ -146,7 +208,7 @@ class _MapScreenState extends State<MapScreen> {
           SnackBar(content: Text('Added "${tree.name}" to favorites')),
         );
       }
-      _loadTreeMarkers();
+      _updateMarkers();
     });
   }
 
@@ -188,8 +250,18 @@ class _MapScreenState extends State<MapScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Trees Near You'),
+        title: Text(_filtersActive 
+          ? 'Trees (${_filteredTrees.length} filtered)' 
+          : 'Trees Near You'),
         actions: [
+          IconButton(
+            icon: Icon(
+              Icons.filter_list,
+              color: _filtersActive ? Colors.orange : null,
+            ),
+            tooltip: 'Filter Trees',
+            onPressed: _showFilterModal,
+          ),
           IconButton(
             icon: const Icon(Icons.favorite),
             tooltip: 'View Favorites',

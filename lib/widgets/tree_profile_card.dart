@@ -220,6 +220,7 @@ class TreeProfileCard extends StatelessWidget {
                           _buildTraitBox('🩸 ${tree.bloodtype}', theme, Colors.red[100]!),
                           _buildTraitBox('📏 ${tree.length} ft tall', theme, Colors.blue[100]!),
                           _buildTraitBox('⭕ ${tree.girth}" girth', theme, Colors.green[100]!),
+                          _buildTraitBox('🌳 ${tree.rings} rings', theme, Colors.brown[100]!),
                         ],
                       ),
                       

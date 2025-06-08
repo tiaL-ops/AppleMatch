@@ -27,6 +27,9 @@ class Tree {
 
   bool get isMature => daysUntilMature <= 0;
 
+  /// Calculate number of rings (roughly one ring per year, but trees are quirky)
+  int get rings => (age / 365).round() + (iq > 85 ? 2 : 0); // Smart trees get bonus rings!
+
   /// Calculate compatibility score with user preferences (0-100)
   int calculateCompatibility({
     String? preferredZodiac,
@@ -79,8 +82,8 @@ class Tree {
     }
     
     // Bonus for high IQ trees
-    if (iq > 140) score += 5;
-    if (iq > 120) score += 3;
+    if (iq > 90) score += 5;
+    if (iq > 75) score += 3;
     
     // Clamp between 0 and 100
     return score.clamp(0, 100);
