@@ -58,12 +58,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
             // ─────────────────── 4 ───────────────────
             // just a tappable “DON’T WORRY”
-            _buildCenteredTap(
-              theme,
-              "DON'T WORRY",
-              _nextPage,
-            ),
-
+          
             // ─────────────────── 5 ───────────────────
             // Daddy Apple slide
             _buildCenteredTap(
