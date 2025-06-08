@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+// lib/features/map/map_screen.dart
+
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../data/tree_repository.dart';
 import '../../models/tree_model.dart';
@@ -30,43 +34,47 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeMap();
+    // Use WidgetsBinding to wait for the first frame to be drawn
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeMap();
+    });
   }
 
   Future<void> _initializeMap() async {
     await _mapController.initialize();
     await _loadTreeMarkers();
 
-    final granted = await _mapController.requestLocationPermission();
-    if (granted) {
+    final status = await _mapController.requestLocationPermission();
+
+    if (status.isGranted) {
       _mapController.startProximityMonitoring();
+    } else if (status.isPermanentlyDenied) {
+      _showPermissionDialog();
     } else {
-      final status = await Permission.locationAlways.status;
-      if (status.isPermanentlyDenied) {
-        _showPermissionDialog();
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Enable background location to get proximity alerts.'),
-          ),
-        );
-      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Enable background location to get proximity alerts.'),
+        ),
+      );
     }
   }
 
   Future<void> _showPermissionDialog() async {
+    // Ensure the widget is still in the tree and can show dialogs
+    if (!mounted) return;
+
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Permission Required'),
         content: const Text(
-          'Background location is permanently denied. Please open settings to enable it.',
+          'Background location is permanently denied. Please open settings to enable it for this app.',
         ),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              openAppSettings();
+              openAppSettings(); // This opens the app's settings page
             },
             child: const Text('Open Settings'),
           ),
@@ -97,14 +105,17 @@ class _MapScreenState extends State<MapScreen> {
       );
     }).toSet();
 
-    setState(() {
-      _markers
-        ..clear()
-        ..addAll(newMarkers);
-    });
+    if (mounted) {
+      setState(() {
+        _markers
+          ..clear()
+          ..addAll(newMarkers);
+      });
+    }
   }
 
   void _toggleFavorite(Tree tree) {
+    if (!mounted) return;
     setState(() {
       if (_favoriteIds.remove(tree.id)) {
         _favoriteTrees.removeWhere((t) => t.id == tree.id);
