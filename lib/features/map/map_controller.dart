@@ -2,6 +2,8 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+
+
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../data/tree_repository.dart';
@@ -19,37 +21,33 @@ class MapController {
     await _notificationService.initialize();
   }
 
-  /// Returns true only if BOTH foreground & background location are granted.
-  Future<bool> requestLocationPermission() async {
-    // 1️⃣ Foreground (coarse/fine) for Android & "when in use" for iOS
+  /// Returns the specific [PermissionStatus] for location.
+  Future<PermissionStatus> requestLocationPermission() async {
+    // 1. Check foreground permission
     var status = await Permission.location.status;
     if (status.isDenied) {
       status = await Permission.location.request();
     }
+    // If permanently denied, return immediately
     if (status.isPermanentlyDenied) {
       debugPrint('Location permission permanently denied.');
-      return false;
+      return status;
     }
+    // If not granted, return
     if (!status.isGranted) {
       debugPrint('Location permission denied.');
-      return false;
+      return status;
     }
 
-    // 2️⃣ Background (always) – Android 10+ & iOS
+    // 2. If foreground is granted, check background permission
     var bgStatus = await Permission.locationAlways.status;
     if (bgStatus.isDenied) {
       bgStatus = await Permission.locationAlways.request();
     }
     if (bgStatus.isPermanentlyDenied) {
       debugPrint('Background location permission permanently denied.');
-      return false;
     }
-    if (!bgStatus.isGranted) {
-      debugPrint('Background location permission denied.');
-      return false;
-    }
-
-    return true;
+    return bgStatus;
   }
 
   /// Starts streaming location updates every ~100m
@@ -61,8 +59,8 @@ class MapController {
       distanceFilter: 100,
     );
 
-    _positionStreamSubscription = Geolocator
-        .getPositionStream(locationSettings: settings)
+    _positionStreamSubscription = Geolocator.getPositionStream(
+            locationSettings: settings)
         .listen((position) {
       debugPrint('Current user location: $position');
       _checkProximity(position);
