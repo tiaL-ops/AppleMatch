@@ -1,0 +1,362 @@
+[
+  {
+    "id": "tree_001",
+    "name": "Maple",
+    "latitude": 47.62994727,
+    "longitude": -122.3579201,
+    "planted_date": "2024-11-23",
+    "maturity_days": 134
+  },
+  {
+    "id": "tree_002",
+    "name": "Aspen",
+    "latitude": 47.61165569,
+    "longitude": -122.35645436,
+    "planted_date": "2023-08-05",
+    "maturity_days": 328
+  },
+  {
+    "id": "tree_003",
+    "name": "Diamond Pine",
+    "latitude": 47.59025819,
+    "longitude": -122.32990503,
+    "planted_date": "2024-05-05",
+    "maturity_days": 362
+  },
+  {
+    "id": "tree_004",
+    "name": "Diamond Pine",
+    "latitude": 47.61150037,
+    "longitude": -122.34379191,
+    "planted_date": "2023-06-27",
+    "maturity_days": 360
+  },
+  {
+    "id": "tree_005",
+    "name": "Maple",
+    "latitude": 47.62338963,
+    "longitude": -122.34489898,
+    "planted_date": "2023-07-26",
+    "maturity_days": 336
+  },
+  {
+    "id": "tree_006",
+    "name": "Spruce",
+    "latitude": 47.68470197,
+    "longitude": -122.39704597,
+    "planted_date": "2023-06-29",
+    "maturity_days": 199
+  },
+  {
+    "id": "tree_007",
+    "name": "Spruce",
+    "latitude": 47.63763956,
+    "longitude": -122.47663278,
+    "planted_date": "2024-07-30",
+    "maturity_days": 214
+  },
+  {
+    "id": "tree_008",
+    "name": "Elm",
+    "latitude": 47.65755949,
+    "longitude": -122.32791173,
+    "planted_date": "2024-02-08",
+    "maturity_days": 301
+  },
+  {
+    "id": "tree_009",
+    "name": "Willow",
+    "latitude": 47.68141196,
+    "longitude": -122.43413039,
+    "planted_date": "2024-11-25",
+    "maturity_days": 228
+  },
+  {
+    "id": "tree_010",
+    "name": "Aspen",
+    "latitude": 47.56339721,
+    "longitude": -122.39079956,
+    "planted_date": "2023-11-16",
+    "maturity_days": 309
+  },
+  {
+    "id": "tree_011",
+    "name": "Elm",
+    "latitude": 47.63389171,
+    "longitude": -122.27220324,
+    "planted_date": "2024-07-16",
+    "maturity_days": 103
+  },
+  {
+    "id": "tree_012",
+    "name": "Cherry",
+    "latitude": 47.67851422,
+    "longitude": -122.40971623,
+    "planted_date": "2023-11-20",
+    "maturity_days": 168
+  },
+  {
+    "id": "tree_013",
+    "name": "Cedar",
+    "latitude": 47.61410671,
+    "longitude": -122.44293373,
+    "planted_date": "2023-06-21",
+    "maturity_days": 115
+  },
+  {
+    "id": "tree_014",
+    "name": "Cypress",
+    "latitude": 47.64843156,
+    "longitude": -122.4321747,
+    "planted_date": "2023-02-15",
+    "maturity_days": 278
+  },
+  {
+    "id": "tree_015",
+    "name": "Birch",
+    "latitude": 47.64937296,
+    "longitude": -122.25680968,
+    "planted_date": "2024-10-17",
+    "maturity_days": 237
+  },
+  {
+    "id": "tree_016",
+    "name": "Spruce",
+    "latitude": 40.71263911,
+    "longitude": -75.16732707,
+    "planted_date": "2024-01-28",
+    "maturity_days": 219
+  },
+  {
+    "id": "tree_017",
+    "name": "Spruce",
+    "latitude": 40.66755178,
+    "longitude": -75.17386359,
+    "planted_date": "2024-01-02",
+    "maturity_days": 250
+  },
+  {
+    "id": "tree_018",
+    "name": "Diamond Pine",
+    "latitude": 40.70981152,
+    "longitude": -75.20406566,
+    "planted_date": "2024-11-13",
+    "maturity_days": 122
+  },
+  {
+    "id": "tree_019",
+    "name": "Cherry",
+    "latitude": 40.72719045,
+    "longitude": -75.16914246,
+    "planted_date": "2023-11-06",
+    "maturity_days": 342
+  },
+  {
+    "id": "tree_020",
+    "name": "Oak",
+    "latitude": 40.70863996,
+    "longitude": -75.2079711,
+    "planted_date": "2024-09-29",
+    "maturity_days": 280
+  },
+  {
+    "id": "tree_021",
+    "name": "Maple",
+    "latitude": 40.66797183,
+    "longitude": -75.21844648,
+    "planted_date": "2024-07-22",
+    "maturity_days": 138
+  },
+  {
+    "id": "tree_022",
+    "name": "Redwood",
+    "latitude": 40.70605941,
+    "longitude": -75.18097556,
+    "planted_date": "2024-11-07",
+    "maturity_days": 248
+  },
+  {
+    "id": "tree_023",
+    "name": "Diamond Pine",
+    "latitude": 40.70207263,
+    "longitude": -75.20711653,
+    "planted_date": "2023-01-06",
+    "maturity_days": 103
+  },
+  {
+    "id": "tree_024",
+    "name": "Cypress",
+    "latitude": 40.7271795,
+    "longitude": -75.23657816,
+    "planted_date": "2024-10-09",
+    "maturity_days": 271
+  },
+  {
+    "id": "tree_025",
+    "name": "Cypress",
+    "latitude": 40.71613495,
+    "longitude": -75.20689673,
+    "planted_date": "2023-06-22",
+    "maturity_days": 220
+  },
+  {
+    "id": "tree_026",
+    "name": "Elm",
+    "latitude": -18.84855365,
+    "longitude": 47.49587042,
+    "planted_date": "2024-12-11",
+    "maturity_days": 202
+  },
+  {
+    "id": "tree_027",
+    "name": "Maple",
+    "latitude": -18.84339995,
+    "longitude": 47.49977164,
+    "planted_date": "2024-08-14",
+    "maturity_days": 300
+  },
+  {
+    "id": "tree_028",
+    "name": "Magnolia",
+    "latitude": -18.84920894,
+    "longitude": 47.49683959,
+    "planted_date": "2023-12-19",
+    "maturity_days": 330
+  },
+  {
+    "id": "tree_029",
+    "name": "Diamond Pine",
+    "latitude": -18.85061633,
+    "longitude": 47.52415995,
+    "planted_date": "2024-02-14",
+    "maturity_days": 115
+  },
+  {
+    "id": "tree_030",
+    "name": "Diamond Pine",
+    "latitude": -18.82278848,
+    "longitude": 47.50528481,
+    "planted_date": "2024-04-19",
+    "maturity_days": 149
+  },
+  {
+    "id": "tree_031",
+    "name": "Oak",
+    "latitude": -18.82513278,
+    "longitude": 47.50641527,
+    "planted_date": "2023-08-11",
+    "maturity_days": 344
+  },
+  {
+    "id": "tree_032",
+    "name": "Maple",
+    "latitude": -18.842068,
+    "longitude": 47.5277443,
+    "planted_date": "2024-03-15",
+    "maturity_days": 148
+  },
+  {
+    "id": "tree_033",
+    "name": "Birch",
+    "latitude": -18.8236375,
+    "longitude": 47.53256261,
+    "planted_date": "2024-04-08",
+    "maturity_days": 143
+  },
+  {
+    "id": "tree_034",
+    "name": "Fir",
+    "latitude": -18.85341148,
+    "longitude": 47.46467919,
+    "planted_date": "2024-06-02",
+    "maturity_days": 299
+  },
+  {
+    "id": "tree_035",
+    "name": "Magnolia",
+    "latitude": -18.85022984,
+    "longitude": 47.52347653,
+    "planted_date": "2023-02-25",
+    "maturity_days": 160
+  },
+  {
+    "id": "tree_036",
+    "name": "Aspen",
+    "latitude": 36.72090038,
+    "longitude": 128.27320537,
+    "planted_date": "2024-04-30",
+    "maturity_days": 210
+  },
+  {
+    "id": "tree_037",
+    "name": "Fir",
+    "latitude": 36.68950761,
+    "longitude": 128.2297742,
+    "planted_date": "2023-08-24",
+    "maturity_days": 362
+  },
+  {
+    "id": "tree_038",
+    "name": "Elm",
+    "latitude": 36.71492666,
+    "longitude": 128.30224834,
+    "planted_date": "2023-09-20",
+    "maturity_days": 290
+  },
+  {
+    "id": "tree_039",
+    "name": "Cherry",
+    "latitude": 36.69626084,
+    "longitude": 128.25888745,
+    "planted_date": "2024-03-31",
+    "maturity_days": 93
+  },
+  {
+    "id": "tree_040",
+    "name": "Diamond Pine",
+    "latitude": 36.7402284,
+    "longitude": 128.30422746,
+    "planted_date": "2024-04-28",
+    "maturity_days": 323
+  },
+  {
+    "id": "tree_041",
+    "name": "Maple",
+    "latitude": 36.70640081,
+    "longitude": 128.26305641,
+    "planted_date": "2023-01-28",
+    "maturity_days": 139
+  },
+  {
+    "id": "tree_042",
+    "name": "Willow",
+    "latitude": 36.71569375,
+    "longitude": 128.2747433,
+    "planted_date": "2024-06-14",
+    "maturity_days": 124
+  },
+  {
+    "id": "tree_043",
+    "name": "Aspen",
+    "latitude": 36.70692993,
+    "longitude": 128.31594393,
+    "planted_date": "2023-09-17",
+    "maturity_days": 310
+  },
+  {
+    "id": "tree_044",
+    "name": "Cypress",
+    "latitude": 36.7490862,
+    "longitude": 128.27308149,
+    "planted_date": "2023-10-06",
+    "maturity_days": 103
+  },
+  {
+    "id": "tree_045",
+    "name": "Birch",
+    "latitude": 36.71743872,
+    "longitude": 128.30694144,
+    "planted_date": "2024-05-29",
+    "maturity_days": 177
+  }
+]
