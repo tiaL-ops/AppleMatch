@@ -48,36 +48,21 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             ),
             const SizedBox(height: 100),
             GestureDetector(
-              onTap: () {
-                // Navigate to the map screen when clicked
-                Navigator.of(context).pushNamed('/questions');
-              },
-              child: ScaleTransition(
-                scale: _scaleAnimation,
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colorScheme.primary, // Cute Green
-                    boxShadow: [
-                      BoxShadow(
-                        color: theme.colorScheme.primary.withOpacity(0.4),
-                        blurRadius: 20,
-                        spreadRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      'assets/icons/newton_apple.svg',
-                      colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                      width: 80,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+  onTap: () {
+    Navigator.of(context).pushNamed('/questions');
+  },
+  child: ScaleTransition(
+    scale: _scaleAnimation,
+    child: Image.asset(
+      'assets/images/daddy_apple.png',
+      width: 200, // adjust size if needed
+      height: 260,
+      fit: BoxFit.cover,
+    ),
+  ),
+),
+
+     
           ],
         ),
       ),
