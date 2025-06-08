@@ -10,7 +10,8 @@ class Tree {
   final double longitude;
   final String plantedDate;
   final int maturityDays;
-  final String starsign;
+  final String zodiac;
+  final int age;
   final String bloodtype;
   final int length;
   final int girth;
@@ -33,9 +34,10 @@ class Tree {
     required this.longitude,
     required this.plantedDate,
     required this.maturityDays,
-    required this.starsign,
+    required this.zodiac,
     required this.bloodtype,
     required this.length,
+    required this.age,
     required this.girth,
     required this.iq,
   });
@@ -45,13 +47,14 @@ class Tree {
     return Tree(
       id: json['id'] as String,
       name: json['name'] as String,
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+     latitude: json['latitude'] as double,
+      longitude: json['longitude'] as double,
       plantedDate: json['planted_date'] as String,
       maturityDays: json['maturity_days'] as int,
-      starsign: json['starsign'] as String,
+      zodiac :json['zodiac'] as String,
       bloodtype: json['bloodtype'] as String,
       length: json['length'] as int,
+      age: json['age'] as int,
       girth: json['girth'] as int,
       iq: json['iq'] as int,
     );
@@ -65,7 +68,7 @@ class Tree {
         'longitude': longitude,
         'planted_date': plantedDate,
         'maturity_days': maturityDays,
-        'starsign': starsign,
+        'zodiac':zodiac,
         'bloodtype': bloodtype,
         'length': length,
         'girth': girth,
