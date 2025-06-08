@@ -27,6 +27,88 @@ class Tree {
 
   bool get isMature => daysUntilMature <= 0;
 
+  /// Calculate compatibility score with user preferences (0-100)
+  int calculateCompatibility({
+    String? preferredZodiac,
+    String? preferredBloodType,
+    int? preferredMinIQ,
+    int? preferredMaxAge,
+    bool? preferMature,
+  }) {
+    int score = 50; // Base compatibility
+    
+    // Zodiac compatibility
+    if (preferredZodiac != null) {
+      if (zodiac.toLowerCase() == preferredZodiac.toLowerCase()) {
+        score += 20;
+      } else if (_isCompatibleZodiac(zodiac, preferredZodiac)) {
+        score += 10;
+      }
+    }
+    
+    // Blood type compatibility  
+    if (preferredBloodType != null) {
+      if (bloodtype.toLowerCase().contains(preferredBloodType.toLowerCase())) {
+        score += 15;
+      }
+    }
+    
+    // IQ preference
+    if (preferredMinIQ != null) {
+      if (iq >= preferredMinIQ) {
+        score += 15;
+      } else {
+        score -= 10;
+      }
+    }
+    
+    // Age preference
+    if (preferredMaxAge != null) {
+      if (age <= preferredMaxAge) {
+        score += 10;
+      } else {
+        score -= 5;
+      }
+    }
+    
+    // Maturity preference
+    if (preferMature != null) {
+      if (isMature == preferMature) {
+        score += 10;
+      }
+    }
+    
+    // Bonus for high IQ trees
+    if (iq > 140) score += 5;
+    if (iq > 120) score += 3;
+    
+    // Clamp between 0 and 100
+    return score.clamp(0, 100);
+  }
+
+  bool _isCompatibleZodiac(String zodiac1, String zodiac2) {
+    // Simple zodiac compatibility (simplified for demo)
+    final compatible = {
+      'aries': ['leo', 'sagittarius', 'gemini', 'aquarius'],
+      'taurus': ['virgo', 'capricorn', 'cancer', 'pisces'],
+      'gemini': ['libra', 'aquarius', 'aries', 'leo'],
+      'cancer': ['scorpio', 'pisces', 'taurus', 'virgo'],
+      'leo': ['aries', 'sagittarius', 'gemini', 'libra'],
+      'virgo': ['taurus', 'capricorn', 'cancer', 'scorpio'],
+      'libra': ['gemini', 'aquarius', 'leo', 'sagittarius'],
+      'scorpio': ['cancer', 'pisces', 'virgo', 'capricorn'],
+      'sagittarius': ['aries', 'leo', 'libra', 'aquarius'],
+      'capricorn': ['taurus', 'virgo', 'scorpio', 'pisces'],
+      'aquarius': ['gemini', 'libra', 'aries', 'sagittarius'],
+      'pisces': ['cancer', 'scorpio', 'taurus', 'capricorn'],
+    };
+    
+    final z1 = zodiac1.toLowerCase();
+    final z2 = zodiac2.toLowerCase();
+    
+    return compatible[z1]?.contains(z2) ?? false;
+  }
+
   const Tree({
     required this.id,
     required this.name,

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-// lib/features/map/map_screen.dart
-
-import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../data/tree_repository.dart';
 import '../../models/tree_model.dart';
+import '../../widgets/tree_profile_card.dart';
 import 'map_controller.dart';
 import '../maturity/upcoming_maturity_page.dart';
 
@@ -91,15 +88,35 @@ class _MapScreenState extends State<MapScreen> {
     final trees = await _treeRepository.getTrees();
     final newMarkers = trees.map((tree) {
       final isFav = _favoriteIds.contains(tree.id);
+      
+      // Calculate compatibility for marker color
+      final compatibility = tree.calculateCompatibility(
+        preferredZodiac: 'Leo',
+        preferredBloodType: 'O',
+        preferredMinIQ: 100,
+        preferredMaxAge: 1000,
+        preferMature: true,
+      );
+      
+      // Choose marker color based on compatibility
+      double hue;
+      if (isFav) {
+        hue = BitmapDescriptor.hueRed; // Favorites are always red
+      } else if (compatibility >= 80) {
+        hue = BitmapDescriptor.hueGreen; // High compatibility
+      } else if (compatibility >= 60) {
+        hue = BitmapDescriptor.hueOrange; // Medium compatibility
+      } else {
+        hue = BitmapDescriptor.hueBlue; // Low compatibility
+      }
+      
       return Marker(
         markerId: MarkerId(tree.id),
         position: LatLng(tree.latitude, tree.longitude),
-        icon: BitmapDescriptor.defaultMarkerWithHue(
-          isFav ? BitmapDescriptor.hueRed : BitmapDescriptor.hueGreen,
-        ),
+        icon: BitmapDescriptor.defaultMarkerWithHue(hue),
         infoWindow: InfoWindow(
-          title: tree.name,
-          snippet: 'Planted: ${tree.plantedDate}',
+          title: '${tree.name} - $compatibility% Match',
+          snippet: 'Tap for full profile • ${tree.isMature ? "Mature 🍎" : "Growing 🌱"}',
           onTap: () => _showTreeOptions(tree),
         ),
       );
@@ -138,25 +155,20 @@ class _MapScreenState extends State<MapScreen> {
 
     showModalBottomSheet(
       context: context,
-      builder: (_) => Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(tree.name, style: Theme.of(context).textTheme.headlineSmall),
-            Text('Planted: ${tree.plantedDate}'),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              icon: Icon(isFav ? Icons.favorite : Icons.favorite_border),
-              label: Text(
-                isFav ? 'Remove from Favorites' : 'Add to Favorites',
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-                _toggleFavorite(tree);
-              },
-            ),
-          ],
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => Container(
+        height: MediaQuery.of(context).size.height * 0.85,
+        child: TreeProfileCard(
+          tree: tree,
+          isFavorite: isFav,
+          onFavorite: () {
+            Navigator.of(context).pop();
+            _toggleFavorite(tree);
+          },
+          onPass: () {
+            Navigator.of(context).pop();
+          },
         ),
       ),
     );
@@ -199,11 +211,73 @@ class _MapScreenState extends State<MapScreen> {
           ),
         ],
       ),
-      body: GoogleMap(
-        initialCameraPosition: CameraPosition(target: center, zoom: 14),
-        markers: _markers,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
+      body: Stack(
+        children: [
+          GoogleMap(
+            initialCameraPosition: CameraPosition(target: center, zoom: 14),
+            markers: _markers,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
+          ),
+          // Compatibility Legend
+          Positioned(
+            bottom: 20,
+            left: 20,
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Compatibility',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _buildLegendItem('🔴', 'Favorites', Colors.red),
+                  _buildLegendItem('🟢', '80%+ Match', Colors.green),
+                  _buildLegendItem('🟠', '60%+ Match', Colors.orange),
+                  _buildLegendItem('🔵', 'Low Match', Colors.blue),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLegendItem(String emoji, String label, Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 12)),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              color: color,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,8 +1,9 @@
 // lib/features/map/map_controller.dart
 
 import 'dart:async';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-
 
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,6 +24,15 @@ class MapController {
 
   /// Returns the specific [PermissionStatus] for location.
   Future<PermissionStatus> requestLocationPermission() async {
+    // Skip background location on web
+    if (kIsWeb) {
+      var status = await Permission.location.status;
+      if (status.isDenied) {
+        status = await Permission.location.request();
+      }
+      return status;
+    }
+
     // 1. Check foreground permission
     var status = await Permission.location.status;
     if (status.isDenied) {
@@ -39,15 +49,20 @@ class MapController {
       return status;
     }
 
-    // 2. If foreground is granted, check background permission
-    var bgStatus = await Permission.locationAlways.status;
-    if (bgStatus.isDenied) {
-      bgStatus = await Permission.locationAlways.request();
+    // 2. If foreground is granted, check background permission (iOS/Android only)
+    try {
+      var bgStatus = await Permission.locationAlways.status;
+      if (bgStatus.isDenied) {
+        bgStatus = await Permission.locationAlways.request();
+      }
+      if (bgStatus.isPermanentlyDenied) {
+        debugPrint('Background location permission permanently denied.');
+      }
+      return bgStatus;
+    } catch (e) {
+      debugPrint('Background location not supported on this platform: $e');
+      return status; // Return the foreground permission status
     }
-    if (bgStatus.isPermanentlyDenied) {
-      debugPrint('Background location permission permanently denied.');
-    }
-    return bgStatus;
   }
 
   /// Starts streaming location updates every ~100m
