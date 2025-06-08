@@ -1,3 +1,65 @@
+
+# AppleMatch 🍎🌳
+
+Find the right tree for you - **Hackathon Project**
+
+## 🚀 Quick Start
+
+### Prerequisites
+- **Flutter SDK**: [Install Flutter](https://docs.flutter.dev/get-started/install)
+- **Xcode**: Latest version (for iOS development)
+- **CocoaPods**: `brew install cocoapods`
+
+### Setup Instructions
+
+1. **Clone and install dependencies**:
+   ```bash
+   git clone <repository-url>
+   cd AppleMatch
+   flutter pub get
+   ```
+
+2. **iOS Setup**:
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
+
+3. **Run the app**:
+   ```bash
+   # iOS Simulator
+   flutter run
+   
+   # Physical iPhone (requires Xcode setup)
+   flutter run -d <device-id>
+   ```
+
+**Note**: Google Maps API key is already configured for this hackathon project!
+
+## 📱 Development
+
+### Bundle Identifier
+The app uses `com.applematch.newton` as the bundle identifier. For physical device testing, you may need to:
+1. Open `ios/Runner.xcworkspace` in Xcode
+2. Set up your development team in Signing & Capabilities
+3. Trust the developer certificate on your device
+
+### Platform Support
+- ✅ iOS (Primary platform)
+- ✅ Web (Limited - Maps/Location don't work)
+- ✅ macOS (Development testing)
+
+## 🔧 Common Issues
+
+**Flutter framework codesigning errors**: Try building directly in Xcode first, then use `flutter run`
+
+**Permission errors**: Location permissions are required for core functionality
+
+---
+
+**Note**: This app is designed for mobile with location services and Google Maps integration.
+
 # AppleMatch
 Have you ever wanted to become the next Newton?
 AppleMatch match you the perfect tree that can bring the genius out of you.
