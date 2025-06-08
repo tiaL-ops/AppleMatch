@@ -43,6 +43,7 @@ flutter:
   assets:
     - assets/data/apple_trees.json
     - assets/icons/
+    - assets/images/daddy_apple.png
 
   fonts:
     - family: BubblegumSans

@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             GestureDetector(
               onTap: () {
                 // Navigate to the map screen when clicked
-                Navigator.of(context).pushNamed('/map');
+                Navigator.of(context).pushNamed('/questions');
               },
               child: ScaleTransition(
                 scale: _scaleAnimation,

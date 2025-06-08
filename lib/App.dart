@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'features/home/home_screen.dart';
 import 'features/map/map_screen.dart';
+import 'features/question/question_screen.dart';
 import 'models/tree_model.dart';
 import 'features/favorites/favorites_screen.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeScreen(),
         '/map': (context) => const MapScreen(),
+         '/questions': (context) => const QuestionScreen(),
         '/favorites': (ctx) {
           final args = ModalRoute.of(ctx)!.settings.arguments;
           final favs = args is List<Tree> ? args : <Tree>[];
