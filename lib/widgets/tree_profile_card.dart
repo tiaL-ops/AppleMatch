@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/tree_model.dart';
-
+import '../features/matches/macthes_screen.dart';
 class TreeProfileCard extends StatelessWidget {
   final Tree tree;
   final VoidCallback? onFavorite;
@@ -236,8 +236,11 @@ class TreeProfileCard extends StatelessWidget {
                           ),
                           _buildActionButton(
                             isFavorite ? Icons.favorite : Icons.favorite_border,
-                            isFavorite ? Colors.red : theme.colorScheme.primary,
-                            onFavorite ?? () {},
+                            theme.colorScheme.primary,
+  () {
+    Navigator.pushNamed(context, '/matches');
+  },
+                           
                           ),
                         ],
                       ),
