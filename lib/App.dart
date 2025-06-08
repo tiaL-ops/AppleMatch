@@ -7,7 +7,7 @@ import 'features/question/question_screen.dart';
 import 'models/tree_model.dart';
 import 'features/favorites/favorites_screen.dart';
 import 'features/reviews/review_screen.dart';
-
+import 'features/matches/macthes_screen.dart';
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -44,6 +44,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeScreen(),
         '/map': (context) => const MapScreen(),
+        '/matches': (context) => const MatchesScreen(),
+        
         '/reviews': (context) => const ReviewScreen(),
          '/questions': (context) => const QuestionScreen(),
         '/favorites': (ctx) {
