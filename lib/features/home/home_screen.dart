@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Hi, ready to be wise?",
+              "Find the genius within you",
               style: theme.textTheme.displayMedium,
               textAlign: TextAlign.center,
             ),
