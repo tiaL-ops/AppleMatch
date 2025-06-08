@@ -87,7 +87,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   Text(
                     'Daddy Apple is here to help',
                     style: theme.textTheme.titleLarge?.copyWith(
-                      fontFamily: 'BubblegumSans',
+                      fontFamily: 'EuphoriaScript',
                       fontStyle: FontStyle.italic,
                     ),
                     textAlign: TextAlign.center,
@@ -136,7 +136,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             Text(
               text,
               style: theme.textTheme.headlineSmall?.copyWith(
-                fontFamily: 'BubblegumSans',
+                fontFamily: ' EuphoriaScript',
                 fontStyle: FontStyle.italic,
               ),
               textAlign: TextAlign.center,

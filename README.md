@@ -1,7 +1,7 @@
 
 # AppleMatch 🍎🌳
 
-Find the right tree for you - **Hackathon Project**
+Find the right tree to summon the genius in you - **Hackathon Project**
 
 ## 🚀 Quick Start
 
