@@ -1,9 +1,37 @@
 
-# AppleMatch 🍎🌳
+# AppleMatch
 
 Find the right tree to summon the genius in you - **Hackathon Project**
 
-## 🚀 Quick Start
+Ever dreamt of becoming the next Newton?
+
+Well, today's your day! We're thrilled to introduce an app that will guide you to the secret locations where some of the biggest ideas of all time originated... apple trees.
+
+> It's scientifically proven that a falling apple to the head sparks genius!
+
+AppleMatch helps you find the perfect apple tree near you.
+
+Swipe to discover trees that match your preferences: girth, length, age—we've got you covered. Swipe and let our magic work, boosting your chances of becoming a genius to 120%!
+
+## Core Features
+
+1.  **Map View**: See all the apple trees around you, complete with important data (age, girth, IQ, etc.).
+2.  **View and Swipe Profile**: ;)
+3.  **Favorites**: Save your favorite apple trees, just like some parents have a favorite child.
+4.  **Mock Tree Dataset**: We've faked the data, much like we fake social media.
+
+---
+
+## Tech Stack:
+
+* Flutter
+* Flutter's Google Maps package (for location)
+* Flutter's local notifications plugin (for notifications)
+* ChatGPT-generated data
+
+
+
+## Quick Start
 
 ### Prerequisites
 - **Flutter SDK**: [Install Flutter](https://docs.flutter.dev/get-started/install)
@@ -37,7 +65,7 @@ Find the right tree to summon the genius in you - **Hackathon Project**
 
 **Note**: Google Maps API key is already configured for this hackathon project!
 
-## 📱 Development
+## Development
 
 ### Bundle Identifier
 The app uses `com.applematch.newton` as the bundle identifier. For physical device testing, you may need to:
@@ -60,31 +88,6 @@ The app uses `com.applematch.newton` as the bundle identifier. For physical devi
 
 **Note**: This app is designed for mobile with location services and Google Maps integration.
 
-# AppleMatch
-Have you ever wanted to become the next Newton?
-AppleMatch match you the perfect tree that can bring the genius out of you.
+## Future Features
 
-Swipe to find your fav tree , walk near them, get notified, save favorites, and get reminders when trees have apple that will likely fall on its own so that you can have 120% of chance to become a genius.
-
-# Core Features
-Map View: Shows all the apple trees with important metadata (age, type, and how much more mature it is than you).
-Swipe View: Stand vy your standarts and follow your tree
-Proximity Alerts: Withing 3 miles it will show you all the possible tree that may save you from your useless cs degree
-Mock Tree Dataset: We faked the data like we fake social media.
-Favorites: you can save your favorites apple tree like some parent have favorite child.
-Wise Alerts: It will have alert you when an apple is about to fall for the following week so you can run there
-Data storage:For the depth and wise and very scalable aspect of this project we are going to use a very big data structure: array.
-
-
-# MVP
-
- - [x] Show map with mock apple trees
- - [x] Tap tree → see metadata (age, maturity)
- - [ ] Proximity alert (within 3 miles)
-- [x] Save as favorite
-- [x] A page to have the maturity
-- [ ] Set reminder for maturity
-
-- [ ] have pages that display question to answer
-- [ ] add more data type info the tree
-- [ ] matches the top tree for you
+Honestly, I need to sit under a tree to think of more.

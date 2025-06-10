@@ -1,5 +1,3 @@
-// lib/features/home/home_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,8 +9,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _scaleAnimation;
+  late final AnimationController _animationController;
+  late final Animation<double> _scaleAnimation;
 
   @override
   void initState() {
@@ -22,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       duration: const Duration(milliseconds: 1500),
     )..repeat(reverse: true);
 
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.15).animate(
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
   }
@@ -35,35 +33,46 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Find the genius within you",
-              style: theme.textTheme.displayMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 100),
-            GestureDetector(
-  onTap: () {
-    Navigator.of(context).pushNamed('/questions');
-  },
-  child: ScaleTransition(
-    scale: _scaleAnimation,
-    child: Image.asset(
-      'assets/images/daddy_apple.png',
-      width: 200, // adjust size if needed
-      height: 260,
-      fit: BoxFit.cover,
-    ),
-  ),
-),
-
-     
-          ],
+      backgroundColor: const Color.fromARGB(255, 40, 124, 82), // Nude green minimalist
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Find the genius within you',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'BubblegumSans',
+                  fontSize: 28,
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromARGB(221, 231, 223, 223),
+                ),
+              ),
+              const SizedBox(height: 0),
+              GestureDetector(
+                onTap: () => Navigator.of(context).pushNamed('/questions'),
+                child: ScaleTransition(
+                  scale: _scaleAnimation,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(0),
+                      child: SvgPicture.asset(
+                        'assets/icons/apple.svg',
+                        width: 420,
+                        height: 460,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
