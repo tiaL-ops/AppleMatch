@@ -42,7 +42,7 @@ Swipe to discover trees that match your preferences: girth, length, age—we've 
 
 1. **Clone and install dependencies**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/tiaL-ops/AppleMatch.git
    cd AppleMatch
    flutter pub get
    ```
